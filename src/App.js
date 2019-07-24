@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Main from './components/maincomp';
-
+import {BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 
@@ -13,11 +13,12 @@ import './App.css';
     render () { 
 
     return (  
-      
+      <BrowserRouter> 
       <div className="App">
         
       <Main/>
     </div>
+    </BrowserRouter>
   );}}
 
 
