@@ -10,8 +10,6 @@ return(
 
 
     );
-
-
 }
 
 export default Home;
