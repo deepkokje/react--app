@@ -2,7 +2,7 @@ import React , {Component} from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem , Button, Modal, ModalHeader, ModalBody, Row, Col, Label} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
-
+import { Loading } from './loadingcomp';
     function RenderDish({dish}) {
         return (
             <Card>
@@ -37,7 +37,27 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
         );
     }
     const DishDetail = props => {
-        if (props.dish) {
+                      
+        if (props.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );}
+            else if(props.errMess){
+                return(
+                    <div className="container">
+                        <div className="row">            
+                           <h4>{props.errMess}</h4>
+                        </div>
+                   </div>
+                );
+                
+            }
+            else if(props.dish!=null)
+                    {
             return (
                 <div className="container">
                     <div className="row">
@@ -137,7 +157,7 @@ class CommentForm extends Component {
                                         <Label htmlFor="feedback" md={2}>Your feedback</Label>
                                         <Col md={10}>
                                         <Control.textarea model=".comment" id="comment" name="comment" rows="6" className="form-control" validators={{ required }} />
-                                            <Errors className="text-danger" model=".comment" show="touched" messages={{ required: 'Required'}} />
+                                            <Errors className="text-danger" model=".comment" show="touched" messages={{ required: 'Required'}} /> 
                                         </Col>
                                     </Row>
 
