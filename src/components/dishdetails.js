@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem , Button, Modal, ModalHeader, ModalBody, Row, Col, Label} from 'reactstrap';
+import { Card, CardImg,  CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem , Button, Modal, ModalHeader, ModalBody, Row, Col, Label} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './loadingcomp';
@@ -17,7 +17,7 @@ import {baseUrl} from '../shared/baseUrl';
             </Card>
         );
     }
-    function RenderComments({ comments, postComment, dishId }){
+    function RenderComments({comments,addComment,dishId}) {
         var commentList = comments.map(comment => {
             return (
                 <li key={comment.id} >
@@ -34,7 +34,7 @@ import {baseUrl} from '../shared/baseUrl';
                 <ul className="list-unstyled">
                     {commentList}
                 </ul>
-                <CommentForm dishId={dishId} postComment={postComment} />
+                <CommentForm dishId={dishId} addComment={addComment} />
                
             </div>
         );
@@ -79,7 +79,7 @@ import {baseUrl} from '../shared/baseUrl';
                         </div>
                         <div className="col-12 col-md-5 m-1">
 
-                        <RenderComments comments={props.comments} postComment={props.postComment} dishId={props.dish.id} />
+                        <RenderComments comments={props.comments} addComment={props.addComment} dishId={props.dish.id} />
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@ class CommentForm extends Component {
 
     handleSubmit(values){
         this.toggleModal();
-        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
+     this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
